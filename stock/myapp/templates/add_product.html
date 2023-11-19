@@ -1,7 +1,64 @@
 {% extends "base.html" %}
-<h2>Add Product</h2>
-<form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Add Product</button>
-</form>
+
+{% block content %}
+  <style>
+    .form-label {
+      color: #333;
+      font-weight: bold;
+    }
+
+    .form-control {
+      border-radius: 0;
+      border-color: #ccc;
+    }
+
+    .form-control:focus {
+      border-color: #80bdff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
+  </style>
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Add Product</h2>
+            <form method="POST" class="form">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="{{ form.name.id_for_label }}" class="form-label">Name:</label>
+                {{ form.name }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.description.id_for_label }}" class="form-label">Description:</label>
+                {{ form.description }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.unit_price.id_for_label }}" class="form-label">Unit Price:</label>
+                {{ form.unit_price }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.quantity.id_for_label }}" class="form-label">Quantity:</label>
+                {{ form.quantity }}
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Add Product</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

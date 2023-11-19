@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block styles %}
+  <style>
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      overflow: auto;
+      max-height: 600px;
+    }
+
+    .product-info {
+      flex-basis: calc(33.33% - 20px);
+      margin-bottom: 40px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box; /* Added box-sizing property */
+    }
+
+    .product-info h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .product-info p {
+      margin: 5px 0;
+    }
+
+    .qr-code {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .qr-code img {
+      max-width: 200px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <h1 style="text-align: center; margin-bottom: 40px;">Product Information</h1>
+
+  <div class="product-list d-flex flex-wrap gap-3">
+    {% for product, image_data in qr_codes %}
+      <div class="product-info" style="border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
+        <h2 style="font-size: 24px; margin-bottom: 10px; color: #333;" class="text-uppercase text-center">{{ product.name }}</h2>
+        <div class="qr-code" style="display: flex; justify-content: center; align-items: center;">
+          <img src="data:image/png;base64,{{ image_data }}" alt="QR Code" style="max-width: 200px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        </div>
+        <p style="color: #666;"><strong>Description:</strong> {{ product.description }}</p>
+        <p style="color: #666;"><strong>Price:</strong> ${{ product.unit_price }}</p>
+        <p style="color: #666;"><strong>Quantity:</strong> {{ product.quantity }}</p>
+        <p style="color: #666;"><strong>Total Price:</strong> ${{ product.total_price }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
