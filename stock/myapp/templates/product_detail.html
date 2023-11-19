@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Product Detail - {{ product.name }}{% endblock %}
+
+{% block styles %}
+  <style>
+    /* Add your custom CSS styles here */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    p {
+      margin-bottom: 5px;
+    }
+
+    /* Add more styles as needed */
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>Product Detail</h1>
+    <h2>{{ product.name }}</h2>
+    <p>Description: {{ product.description }}</p>
+    <p>Price: ${{ product.unit_price }}</p>
+    <p>Quantity: {{ product.quantity }}</p>
+    <p>Total Price: ${{ product.total_price }}</p>
+    <!-- Add more details or customize the template as needed -->
+  </div>
+{% endblock %}
